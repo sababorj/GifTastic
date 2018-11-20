@@ -1,0 +1,35 @@
+#submit ,.emotion {
+    background-color: cadetblue;
+    color: white;
+    font-size: 18px;
+    margin-right: 8px
+}
+
+#btnContainer{
+    margin-top: 20px;
+    margin-right: 20px
+}
+
+#formContainer{
+    padding: 20px;
+    float: right;
+}
+
+#giphyContainer{
+    padding: 20px;
+}
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+.gifImg{
+    float: left;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+#Rate{
+    font-weight: bold;
+}
