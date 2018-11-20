@@ -37,16 +37,14 @@ $(document).ready(function () {
             // store the response
             var result = response.data;
             // if there is any result store and display needed data for each result
-            console.log(result.length)
 
-            // if(result.length>=1) {
+            if(result.length>=1) {
                 for (var j = 0; j < result.length; j++) {
                     // dynamicaly creating new element to display result in html
                     var newDiv = $(`<div class='gifImg' id="${j}"></div>`)
                     var giphyRate = $(`<p id="Rate">Rating: ${result[j].rating}</p>`);
                     var staticURL = result[j].images.original_still.url;
                     var dynamicURL = result[j].images.original.url;
-                    console.log(giphyRate, staticURL, dynamicURL)
                     var giphyImage = $(`<img class='gifbtn' src='${staticURL}' state='still' staticImg='${staticURL}' dynamicImg='${dynamicURL}'>`);
 
                     // appending new tags to the html
@@ -54,10 +52,10 @@ $(document).ready(function () {
                     $(`#${j}`).append(giphyRate);
                     $(`#${j}`).append(giphyImage);
                 }
-            // } else {
-            //     var noRes = $("<div> No Result fo this emotion has been found</div>")
-            //     $$("#giphyContainer").append(noRes);
-            // }
+            } else {
+                var noRes = $("<div> No Result fo this emotion has been found</div>")
+                $("#giphyContainer").append(noRes);
+            }
         });
     });
 
