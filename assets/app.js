@@ -26,9 +26,18 @@ $(document).ready(function () {
     // click on topic buttons will trigger an API call via this function
     $(document).on("click", ".emotion", function () {
         $("#giphyContainer").empty();
-        // creating the url for ajax method
+        // building up the url for ajax method
         emotion = $(this).val().trim();
-        queryURL = `https://api.giphy.com/v1/gifs/search?q="${emotion}"&api_key=dc6zaTOxFJmzC&limit=10&&rating=pg`
+        Gurl = "https://api.giphy.com/v1/gifs/search"
+        var params = "?" + $.param({
+            api_key: "dc6zaTOxFJmzC",
+            q: emotion,
+            limit: 10,
+            lang: encodeURI,
+            rating: "pg"
+        })
+        var queryURL = Gurl + params;
+
         // calling API using ajax method
         $.ajax({
             url: queryURL,
@@ -38,7 +47,7 @@ $(document).ready(function () {
             var result = response.data;
             // if there is any result store and display needed data for each result
 
-            if(result.length>=1) {
+            if (result.length >= 1) {
                 for (var j = 0; j < result.length; j++) {
                     // dynamicaly creating new element to display result in html
                     var newDiv = $(`<div class='gifImg' id="${j}"></div>`)
@@ -50,9 +59,11 @@ $(document).ready(function () {
                     // appending new tags to the html
                     $("#giphyContainer").append(newDiv);
                     $(`#${j}`).append(giphyRate);
-                    $(`#${j}`).append(giphyImage);
+                    $(`#${j}`).append(giphyImage); 
                 }
-            } else {
+            } 
+            // If there is no reponse back from the API
+            else {
                 var noRes = $("<div> No Result fo this emotion has been found</div>")
                 $("#giphyContainer").append(noRes);
             }
@@ -75,7 +86,4 @@ $(document).ready(function () {
             $(this).attr("state", "still")
         }
     })
-
-
 });
-

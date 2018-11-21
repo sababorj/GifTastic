@@ -1,3 +1,9 @@
+body{
+    background-color: rgb(148, 209, 247);
+}
+.container{
+    background-color:rgb(201, 230, 241);
+}
 #submit ,.emotion {
     background-color: cadetblue;
     color: white;
@@ -23,6 +29,8 @@
 img {
     width: 250px;
     height: 250px;
+    border: 2px solid black;
+    border-radius: 8px
 }
 
 .gifImg{
