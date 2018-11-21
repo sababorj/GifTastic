@@ -42,7 +42,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function (response) {
+        }).then(function (response){
             // store the response
             var result = response.data;
             // if there is any result store and display needed data for each result
@@ -67,7 +67,9 @@ $(document).ready(function () {
                 var noRes = $("<div> No Result fo this emotion has been found</div>")
                 $("#giphyContainer").append(noRes);
             }
-        });
+        }).fail(function() {
+            console.log( 'requests failed.' );
+          });;
     });
 
     // this function will change the status of giphy when user clicks on it
