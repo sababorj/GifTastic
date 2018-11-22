@@ -18,9 +18,14 @@ $(document).ready(function () {
     $(document).on("click", "#submit", function () {
         event.preventDefault();
         var newEmotion = $("#neShow").val().trim();
-        topics.push(newEmotion);
-        createTopic();
-        $("#neShow").val(null);
+        if (newEmotion) {
+            topics.push(newEmotion);
+            createTopic();
+            $("#neShow").val(null);
+        } else {
+            alert("Please enter an emotion")
+        }
+
     })
 
     // click on topic buttons will trigger an API call via this function
@@ -42,7 +47,7 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function (response){
+        }).then(function (response) {
             // store the response
             var result = response.data;
             // if there is any result store and display needed data for each result
@@ -59,17 +64,17 @@ $(document).ready(function () {
                     // appending new tags to the html
                     $("#giphyContainer").append(newDiv);
                     $(`#${j}`).append(giphyRate);
-                    $(`#${j}`).append(giphyImage); 
+                    $(`#${j}`).append(giphyImage);
                 }
-            } 
+            }
             // If there is no reponse back from the API
             else {
                 var noRes = $("<div> No Result fo this emotion has been found</div>")
                 $("#giphyContainer").append(noRes);
             }
-        }).fail(function() {
-            console.log( 'requests failed.' );
-          });;
+        }).fail(function () {
+            console.log('requests failed.');
+        });;
     });
 
     // this function will change the status of giphy when user clicks on it
